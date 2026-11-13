@@ -1,15 +1,17 @@
-from fastapi import FastAPI
-from core.config import Settings
+from fastapi import FastAPI,status
+from app.core.config import config
+from fastapi.responses import JSONResponse
+from app.api.employees import router as employee_router
 
-settings=Settings()
+app=FastAPI(title=config.app_name,
+            debug=config.debug)
 
-app=FastAPI(title=settings.app_name,
-            debug=settings.debug)
+app.include_router(employee_router)
 
 @app.get("/")
 def home():
-    return {"APP_NAME":settings.app_name}
+    return JSONResponse(status_code=status.HTTP_200_OK,content={"detail":"successful"})
 
 @app.get("/health")
 def health():
-    return {"status": "healthy"}
+    return JSONResponse(status_code=status.HTTP_200_OK,content={"detail":"Healthy"})
