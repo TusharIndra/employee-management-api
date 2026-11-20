@@ -9,7 +9,8 @@ engine = create_engine(config.database_url,echo=True,pool_pre_ping=True)
 #sessionfactory
 sessionLocal=sessionmaker(bind=engine,autoflush=False,autocommit=False)
 
+#sesssion
 def get_db():
     with sessionLocal() as session:
         yield session
-        
+            

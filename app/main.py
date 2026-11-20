@@ -1,7 +1,7 @@
 from fastapi import FastAPI,status,Depends,HTTPException
 from app.core.config import config
 from fastapi.responses import JSONResponse
-from app.api.employees import router as employee_router
+from app.api.employee_routes import router as employee_router
 from sqlalchemy import text
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
